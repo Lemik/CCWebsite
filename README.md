@@ -1,6 +1,6 @@
 [map]: https://github.com/Lemik/CCWebsite/blob/master/Sitemap.png "Project map"
-[map]: https://github.com/Lemik/CCWebsite/blob/master/Images/Canada/The War of 1812/canada_25c_2012_war_1812_isaac_brock.png "NO COLOR"
-[map]: https://github.com/Lemik/CCWebsite/blob/master/Images/Canada/The War of 1812/canada_25c_2012_war_1812_isaac_brock_color.png "WITH COLOR"
+[isaac1]: https://github.com/Lemik/CCWebsite/blob/master/Images/Canada/The%20War%20of%201812/canada_25c_2012_war_1812_isaac_brock.png "NO COLOR"
+[isaac2]: https://github.com/Lemik/CCWebsite/blob/master/Images/Canada/The%20War%20of%201812/canada_25c_2012_war_1812_isaac_brock_color.png "WITH COLOR"
 
 # Coins Collection web site project map
 
