@@ -11,10 +11,10 @@
  * Background need to be removed in every image.
  * File format: .PNG
  * File Size: 
- ** dpi = 72 image size in main folder should be between 290px x 290px and 1000px x 1000px
- ** in folder xhdpi - 96x96
- ** in folder hdpi - 72x72
- ** in folder mdpi - 48x48
+ * dpi = 72 image size in main folder should be between 290px x 290px and 1000px x 1000px
+ * in folder xhdpi - 96x96
+ * in folder hdpi - 72x72
+ * in folder mdpi - 48x48
 
  * Image name can contain only leters low case register, numbers and underscore( _ ). Do not use space or any other special characters
 
@@ -25,23 +25,24 @@
 ## Where: 
  * country is canada
  * nominal can be: 
- ** 1c - for one cent
- ** 5c - for 5 cent 
- ** 10c for 10 cent
- ** 25c for 25 cent 
- ** 50c for 50 cent
- ** 1 for loonie or 1 dollar 
- ** 2 for toonie or 2 dollars
+ * 1c - for one cent
+ * 5c - for 5 cent 
+ * 10c for 10 cent
+ * 25c for 25 cent 
+ * 50c for 50 cent
+ * 1 for loonie or 1 dollar 
+ * 2 for toonie or 2 dollars
  * year of production - is when coin has been reliased 
  * collection name - is name for this collection
  * coin name - is name specific for this coin 
  * attribut - need to be used if there is 2 coins that look the same but one with color one is without
 
-![Project map][map]
-![Project map][map]
+![canada_25c_2012_1812_war_isaac_brock.png][isaac1]
+![canada_25c_2012_1812_war_isaac_brock_color.png][isaac2]
 ##example:
-**canada_25c_2012_1812_war_isaac_brock_color.png**
 **canada_25c_2012_1812_war_isaac_brock.png**
+**canada_25c_2012_1812_war_isaac_brock_color.png**
+
 
 #Spreadsheet:
 
