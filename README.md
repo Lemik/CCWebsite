@@ -1,3 +1,4 @@
+## Get Started:
 1. **Clone this repository.**
 2. **Install Node Packages.** - `npm install`
 3. **Run the app.** - `npm start -s`
