@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import * as coinActions from '../../actions/coinActions';
 
 class AddCoinPage extends React.Component {
@@ -18,8 +19,7 @@ onTitleChange(event){
   this.setState({ coin: coin });
 }
 onClickSave(){
-  console.log(`Saving ${this.state.coin.title}`);
-  this.props.addCoin(this.state.coin);
+  this.props.actions.addCoin(this.state.coin);
 }
 coinRow(coin, index){
   return <div key={index}> {coin.title}</div>;
@@ -48,7 +48,7 @@ coinRow(coin, index){
 }
 
 AddCoinPage.propTypes = {
-  addCoin: PropTypes.func.isRequired,
+  actions: PropTypes.object.isRequired,
   coin: PropTypes.array.isRequired
 };
 
@@ -60,8 +60,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-      addCoin:coin=>dispatch(coinActions.addCoin(coin))
-  //  actions: bindActionCreators(coinActions, dispatch)
+      //addCoin:coin=>dispatch(coinActions.addCoin(coin))
+      actions: bindActionCreators(coinActions, dispatch)
   };
 }
 
