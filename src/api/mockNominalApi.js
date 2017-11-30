@@ -3,44 +3,42 @@ import delay from './delay';
 // This file mocks a web API by working with the hard-coded data below.
 // It uses setTimeout to simulate the delay of an AJAX call.
 // All calls return promises.
-const authors = [
+const nominals = [
   {
-    id: 'cory-house',
-    firstName: 'Cory',
-    lastName: 'House'
+    id: '1',
+    value:"1"
   },
   {
-    id: 'scott-allen',
-    firstName: 'Scott',
-    lastName: 'Allen'
+    id: '2',
+    value:"2"
   },
   {
-    id: 'dan-wahlin',
-    firstName: 'Dan',
-    lastName: 'Wahlin'
+    id: '5',
+    value:"5"
   }
+
 ];
 
 //This would be performed on the server in a real app. Just stubbing in.
-const generateId = (author) => {
-  return author.firstName.toLowerCase() + '-' + author.lastName.toLowerCase();
+const generateId = (nominal) => {
+  return nominal.value();
 };
 
-class AuthorApi {
-  static getAllAuthors() {
+class NominalApi {
+  static getAllNominals() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(Object.assign([], authors));
+        resolve(Object.assign([], nominals));
       }, delay);
     });
   }
 
-  static saveAuthor(author) {
-    author = Object.assign({}, author); // to avoid manipulating object passed in.
+  static saveNominal(nominal) {
+    nominal = Object.assign({}, nominal); // to avoid manipulating object passed in.
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         // Simulate server-side validation
-        const minAuthorNameLength = 3;
+/*      const minAuthorNameLength = 3;
         if (author.firstName.length < minAuthorNameLength) {
           reject(`First Name must be at least ${minAuthorNameLength} characters.`);
         }
@@ -48,34 +46,34 @@ class AuthorApi {
         if (author.lastName.length < minAuthorNameLength) {
           reject(`Last Name must be at least ${minAuthorNameLength} characters.`);
         }
-
-        if (author.id) {
-          const existingAuthorIndex = authors.findIndex(a => a.id == author.id);
-          authors.splice(existingAuthorIndex, 1, author);
+*/
+        if (nominal.id) {
+          const existingNominalIndex = nominal.findIndex(a => a.id == nominal.id);
+          nominal.splice(existingNominalIndex, 1, nominal);
         } else {
           //Just simulating creation here.
           //The server would generate ids for new authors in a real app.
           //Cloning so copy returned is passed by value rather than by reference.
-          author.id = generateId(author);
-          authors.push(author);
+          nominal.id = generateId(nominal);
+          nominal.push(nominal);
         }
 
-        resolve(author);
+        resolve(nominal);
       }, delay);
     });
   }
 
-  static deleteAuthor(authorId) {
+  static deleteNominal(nominalId) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const indexOfAuthorToDelete = authors.findIndex(author => {
-          author.authorId == authorId;
+        const indexOfNominalToDelete = nominals.findIndex(nominal => {
+          nominal.nominalId == nominalId;
         });
-        authors.splice(indexOfAuthorToDelete, 1);
+        nominals.splice(indexOfNominalToDelete, 1);
         resolve();
       }, delay);
     });
   }
 }
 
-export default AuthorApi;
+export default NominalApi;

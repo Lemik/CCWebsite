@@ -3,18 +3,34 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as coinActions from '../../actions/coinActions';
 
-/*import CourseForm from './CourseForm';
-import {authorsFormattedForDropdown} from '../../selectors/selectors';
-import toastr from 'toastr';
+import CoinForm from './CoinForm';
+//import {authorsFormattedForDropdown} from '../../selectors/selectors';
+//import toastr from 'toastr';
 
-export class ManageCoursePage extends React.Component {
+export class ManageCoinsPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      course: Object.assign({}, props.course),
-      errors: {},
-      saving: false
+        coin: Object.assign({}, props.coin),
+        nominal: Object.assign({}, props.nominal),
+        errors: {},
+        saving: false
+};}
+render(){
+  return(
+        <CoinForm
+          allNominals={this.props.nominal}
+          coin={this.state.coin}
+          errors={this.state.errors}
+          />
+        );
+       }
+}
+
+
+/*
+
     };
 
     this.updateCourseState = this.updateCourseState.bind(this);
@@ -86,12 +102,12 @@ export class ManageCoursePage extends React.Component {
   }
 }
 */
-ManageCoursePage.propTypes = {
-  course: PropTypes.object.isRequired,
-  authors: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
+ManageCoinsPage.propTypes = {
+   coin: PropTypes.object.isRequired,
+   nominals: PropTypes.array.isRequired
+//  actions: PropTypes.object.isRequired
 };
-
+/*
 //Pull in the React Router context so router is available on this.context.router.
 ManageCoursePage.contextTypes = {
   router: PropTypes.object
@@ -102,8 +118,24 @@ function getCourseById(courses, id) {
   if (course) return course[0]; //since filter returns an array, have to grab the first.
   return null;
 }
-
+*/
 function mapStateToProps(state, ownProps) {
+  let coin = {id: '', watchHref: '', title: '', year: '', nominal: '', description: '', imgA: '', imgB: ''};
+
+  const nominalFormatForDropDown = state.nominals.map(nominal =>{
+  return{
+      value: nominal.id,
+      text: nominal.value
+  };
+  });
+
+
+return {
+  coin: coin,
+  nominal: nominalFormatForDropDown
+};
+}
+  /*
   const courseId = ownProps.params.id; // from the path `/course/:id`
 
   let course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
@@ -117,11 +149,11 @@ function mapStateToProps(state, ownProps) {
     authors: authorsFormattedForDropdown(state.authors)
   };
 }
-
+*/
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(coinActions, dispatch)
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageCoinPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageCoinsPage);

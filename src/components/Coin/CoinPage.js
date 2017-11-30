@@ -3,15 +3,19 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as coinActions from '../../actions/coinActions';
 import CoinList from './CoinList';
+import {browserHistory} from 'react-router';
 
 class CoinPage extends React.Component {
-  constructor(props, context){
+    constructor(props, context){
     super(props,context);
-
+    this.redirectToAddCoinPage = this.redirectToAddCoinPage.bind(this);
   }
 coinRow(coin, index){
   return <div key={index}> {coin.title}</div>
     ;
+}
+redirectToAddCoinPage() {
+  browserHistory.push('/coin');
 }
 
   render() {
@@ -20,6 +24,11 @@ coinRow(coin, index){
     return (
       <div>
         <h2>Show All Coins</h2>
+
+        <input type="submit"
+               value="Add Coin"
+               className="btn btn-primary"
+               onClick={this.redirectToAddCoinPage}/>
      <CoinList coin={coin}/>
       </div>
     );
@@ -39,7 +48,6 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-      //addCoin:coin=>dispatch(coinActions.addCoin(coin))
       actions: bindActionCreators(coinActions, dispatch)
   };
 }

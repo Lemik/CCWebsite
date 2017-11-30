@@ -1,8 +1,10 @@
 import * as types from '../actions/actionTypes';
- export default function coinReducer(state = [], action){
+import initialState from './initialState';
+
+ export default function coinReducer(state = initialState.coin, action){
    switch(action.type){
-     case types.LOAD_COINS_SUCCESS:
-      return action.coins;
+     case types.LOAD_COIN_SUCCESS:
+      return action.coin;
 
       default:
         return state;

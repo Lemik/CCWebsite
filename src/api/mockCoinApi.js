@@ -11,7 +11,7 @@ const coins = [
     nominal: "0.25",
     mint: "GG",
     year: "2007",
-    Description: ""
+    Description: "this is empty fiels"
   },
   {
     id:"2",
@@ -20,7 +20,7 @@ const coins = [
     nominal: "0.25",
     mint: "GG",
     year: "2007",
-    Description: ""
+    Description: "this is empty fiels"
   },
   {
       id:"3",
@@ -29,7 +29,7 @@ const coins = [
       nominal: "0.25",
       mint: "GG",
       year: "2007",
-      Description: ""
+      Description: "this is empty fiels"
     }
 ];
 
