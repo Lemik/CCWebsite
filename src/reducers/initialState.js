@@ -1,5 +1,4 @@
 export default{
   nominals: [],
-  coins: [],
-  coin:[]
+  coin: []
 };

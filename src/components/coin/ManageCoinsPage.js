@@ -2,7 +2,6 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as coinActions from '../../actions/coinActions';
-
 import CoinForm from './CoinForm';
 //import {authorsFormattedForDropdown} from '../../selectors/selectors';
 //import toastr from 'toastr';
@@ -16,11 +15,23 @@ export class ManageCoinsPage extends React.Component {
         nominal: Object.assign({}, props.nominal),
         errors: {},
         saving: false
-};}
+};
+    this.updateCoinState = this.updateCoinState.bind(this);
+
+}
+
+updateCoinState(event) {
+  const field = event.target.name;
+  let coin = Object.assign({},this.state.coin)
+  coin[field] = event.target.value;
+  return this.setState({coin: coin});
+}
+
 render(){
   return(
         <CoinForm
           allNominals={this.props.nominal}
+          onChange={this.updateCoinState}
           coin={this.state.coin}
           errors={this.state.errors}
           />
@@ -29,11 +40,8 @@ render(){
 }
 
 
+
 /*
-
-    };
-
-    this.updateCourseState = this.updateCourseState.bind(this);
     this.saveCourse = this.saveCourse.bind(this);
   }
 
@@ -44,12 +52,7 @@ render(){
     }
   }
 
-  updateCourseState(event) {
-    const field = event.target.name;
-    let course = this.state.course;
-    course[field] = event.target.value;
-    return this.setState({course: course});
-  }
+
 
   courseFormIsValid() {
     let formIsValid = true;
@@ -122,12 +125,8 @@ function getCourseById(courses, id) {
 function mapStateToProps(state, ownProps) {
   let coin = {id: '', watchHref: '', title: '', year: '', nominal: '', description: '', imgA: '', imgB: ''};
 
-  const nominalFormatForDropDown = state.nominals.map(nominal =>{
-  return{
-      value: nominal.id,
-      text: nominal.value
-  };
-  });
+  const nominalFormatForDropDown = state.nominals.map(nominal =>{ return{ value: nominal.id,
+                                                                           text: nominal.value  };  });
 
 
 return {

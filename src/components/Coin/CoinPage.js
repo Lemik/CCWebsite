@@ -11,8 +11,7 @@ class CoinPage extends React.Component {
     this.redirectToAddCoinPage = this.redirectToAddCoinPage.bind(this);
   }
 coinRow(coin, index){
-  return <div key={index}> {coin.title}</div>
-    ;
+  return <div key={index}>{coin.title}</div>;
 }
 redirectToAddCoinPage() {
   browserHistory.push('/coin');
@@ -24,7 +23,6 @@ redirectToAddCoinPage() {
     return (
       <div>
         <h2>Show All Coins</h2>
-
         <input type="submit"
                value="Add Coin"
                className="btn btn-primary"
@@ -36,8 +34,9 @@ redirectToAddCoinPage() {
 }
 
 CoinPage.propTypes = {
-  actions: PropTypes.object.isRequired,
-  coin: PropTypes.array.isRequired
+  coin: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
+
 };
 
 function mapStateToProps(state, ownProps) {

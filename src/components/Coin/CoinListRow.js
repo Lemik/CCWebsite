@@ -5,7 +5,7 @@ const CoinListRow = ({coin}) => {
   return (
     <tr>
       <td><a href={coin.watchHref} target="_blank">Watch</a></td>
-      <td>{coin.title}</td>
+      <td><Link to={'/coin/' + coin.id}>{coin.title}</Link></td>
       <td>{coin.nominal}</td>
       <td>{coin.mint}</td>
       <td>{coin.year}</td>
