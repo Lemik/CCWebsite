@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
-import coinApi from "../api/mockCoinApi.js";
+import mockCoinApi from "../api/mockCoinApi.js";
+import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 
 export function loadCoinsSuccess(coin){
   return {type: types.LOAD_COIN_SUCCESS, coin};
@@ -15,7 +16,8 @@ export function updateCoinSuccess(course) {
 
 export function loadAllCoins(){
   return function(dispatch){
-     return coinApi.getAllCoins().then(coin => {
+     dispatch(beginAjaxCall());
+     return mockCoinApi.getAllCoins().then(coin => {
      dispatch(loadCoinsSuccess(coin));
     }).catch(error => {
         throw(error);
@@ -26,7 +28,7 @@ export function loadAllCoins(){
 export function saveCoin(coin) {
   return function (dispatch, getState) {
     dispatch(beginAjaxCall());
-    return coinApi.saveCoin(coin).then(coin => {
+    return mockCoinApi.saveCoin(coin).then(coin => {
       coin.id ? dispatch(updateCoinSuccess(coin)) :
         dispatch(createCoinSuccess(coin));
     }).catch(error => {

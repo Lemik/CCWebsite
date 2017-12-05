@@ -12,37 +12,39 @@ const CoinForm = ({coin, allNominals, onSave, onChange, saving, errors}) => {
         value={coin.title}
         onChange={onChange}
         error={coin.title}/>
-
+        <SelectInput
+          name="nominal"
+          label="Nominal"
+          value={coin.nominal}
+          defaultOption="Select Nominal"
+          options={allNominals}
+          onChange={onChange} error={errors.nominal}/>
         <TextInput
           name="year"
           label="Year"
           value={coin.year}
           onChange={onChange}
           error={coin.year}/>
-//TODO	mint
-      <SelectInput
-        name="nominal"
-        label="Nominal"
-        value={coin.nominal}
-        defaultOption="Select nominal"
-        options={allNominals}
-        onChange={onChange} error={errors.nominal}/>
-//authorID = nominal
+        <TextInput
+          name="mint"
+          label="Mint"
+          value={coin.mint}
+          onChange={onChange}
+          error={errors.mint}/>
+
       <TextInput
         name="description"
         label="Description"
         value={coin.description}
         onChange={onChange}
         error={errors.description}/>
-
       <TextInput
         name="imgA"
         label="ImgA"
         value={coin.imgA}
         onChange={onChange}
         error={errors.imgA}/>
-
-        <TextInput
+      <TextInput
           name="imgB"
           label="ImgB"
           value={coin.imgB}

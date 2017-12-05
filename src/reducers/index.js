@@ -1,11 +1,12 @@
 import {combineReducers} from 'redux';
 import coin from './coinReducer';
-import nominals from './nominalReducer';
-//import initialState from './initialState';
+import nominal from './nominalReducer';
+import ajaxCallsInProgress from './ajaxStatusReducer';
 
 const rootReducer = combineReducers({
   coin,
-  nominals
+  nominal,
+  ajaxCallsInProgress
 });
 
 export default rootReducer;

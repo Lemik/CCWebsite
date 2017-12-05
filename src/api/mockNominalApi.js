@@ -3,7 +3,7 @@ import delay from './delay';
 // This file mocks a web API by working with the hard-coded data below.
 // It uses setTimeout to simulate the delay of an AJAX call.
 // All calls return promises.
-const nominals = [
+const nominal = [
   {
     id: '1',
     value:"1"
@@ -28,7 +28,7 @@ class NominalApi {
   static getAllNominals() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(Object.assign([], nominals));
+        resolve(Object.assign([], nominal));
       }, delay);
     });
   }
@@ -66,10 +66,10 @@ class NominalApi {
   static deleteNominal(nominalId) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const indexOfNominalToDelete = nominals.findIndex(nominal => {
+        const indexOfNominalToDelete = nominal.findIndex(nominal => {
           nominal.nominalId == nominalId;
         });
-        nominals.splice(indexOfNominalToDelete, 1);
+        nominal.splice(indexOfNominalToDelete, 1);
         resolve();
       }, delay);
     });

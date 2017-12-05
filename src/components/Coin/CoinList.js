@@ -9,8 +9,8 @@ const CoinList = ({coin}) => {
         <th>&nbsp;</th>
         <th>Title</th>
         <th>nominal</th>
-        <th>mint</th>
         <th>year</th>
+        <th>mint</th>
       </tr>
       </thead>
       <tbody>

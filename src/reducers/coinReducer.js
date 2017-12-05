@@ -6,6 +6,17 @@ import initialState from './initialState';
      case types.LOAD_COIN_SUCCESS:
       return action.coin;
 
+      case  types.CREATE_COIN_SUCCESS:
+      return [
+        ...state, Object.assign({}, action.coin)
+      ];
+
+      case types.UPDATE_COIN_SUCCESS:
+      return [
+        ...state.filter(coin => coin.id !== action.coin.id),
+        Object.assign({}, action.coin)
+      ];
+
       default:
         return state;
    }
