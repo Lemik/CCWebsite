@@ -3,6 +3,7 @@ import delay from './delay';
 // This file mocks a web API by working with the hard-coded data below.
 // It uses setTimeout to simulate the delay of an AJAX call.
 // All calls return promises.
+let NumberOfCoinsInCollection = 3;
 const mock_coins = [
   {
     id:"1",
@@ -36,15 +37,16 @@ const mock_coins = [
   }
 
 ];
-function replaceAll(str, find, replace) {
-  return str.replace(new RegExp(find, 'g'), replace);
-}
+//function replaceAll(str, find, replace) {
+//  return str.replace(new RegExp(find, 'g'), replace);
+//}
 
 //This would be performed on the server in a real app. Just stubbing in.
 // TODO: Create proper coinId
 const generateId = (coin) => {
 //  return replaceAll(coin.title, ' ', '-');
-return coin.year+coin.mint;
+//return coin.year+coin.mint;
+return NumberOfCoinsInCollection++;
 };
 
 
@@ -58,11 +60,12 @@ class CoinApi {
   }
 
   static saveCoin(coin) {
+    debugger;
     coin = Object.assign({}, coin); // to avoid manipulating object passed in.
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         // Simulate server-side validation
-        const minCoinTitleLength = 1;
+        //const minCoinTitleLength = 1;
 //        if (coin.title.length < minCoinTitleLength) {
 //TODO add more rules for validation of coin on server
 //        }

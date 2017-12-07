@@ -11,20 +11,21 @@ const CoinForm = ({coin, allNominals, onSave, onChange, saving, errors}) => {
         label="Title"
         value={coin.title}
         onChange={onChange}
-        error={coin.title}/>
+        error={errors.title}/>
         <SelectInput
           name="nominal"
           label="Nominal"
           value={coin.nominal}
           defaultOption="Select Nominal"
           options={allNominals}
-          onChange={onChange} error={errors.nominal}/>
+          onChange={onChange}
+          error={errors.nominal}/>
         <TextInput
           name="year"
           label="Year"
           value={coin.year}
           onChange={onChange}
-          error={coin.year}/>
+          error={errors.year}/>
         <TextInput
           name="mint"
           label="Mint"
@@ -38,18 +39,7 @@ const CoinForm = ({coin, allNominals, onSave, onChange, saving, errors}) => {
         value={coin.description}
         onChange={onChange}
         error={errors.description}/>
-      <TextInput
-        name="imgA"
-        label="ImgA"
-        value={coin.imgA}
-        onChange={onChange}
-        error={errors.imgA}/>
-      <TextInput
-          name="imgB"
-          label="ImgB"
-          value={coin.imgB}
-          onChange={onChange}
-          error={errors.imgB}/>
+
 
       <input
         type="submit"
@@ -71,3 +61,19 @@ CoinForm.propTypes = {
 };
 
 export default CoinForm;
+/*
+
+<TextInput
+name="imgA"
+label="ImgA"
+value={coin.imgA}
+onChange={onChange}
+error={errors.imgA}/>
+<TextInput
+ name="imgB"
+ label="ImgB"
+ value={coin.imgB}
+ onChange={onChange}
+ error={errors.imgB}/>
+
+*/

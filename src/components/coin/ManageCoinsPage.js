@@ -12,7 +12,7 @@ export class ManageCoinsPage extends React.Component {
 
     this.state = {
         coin: Object.assign({}, props.coin),
-      //  nominal: Object.assign({}, props.nominal),
+        nominal: Object.assign({}, props.nominal),
         errors: {},
         saving: false
 };
@@ -22,6 +22,7 @@ export class ManageCoinsPage extends React.Component {
 }
 
 componentWillReceiveProps(nextProps) {
+  debugger;
   if (this.props.coin.id != nextProps.coin.id) {
     // Necessary to populate form when existing course is loaded directly.
     this.setState({coin: Object.assign({}, nextProps.coin)});
@@ -29,31 +30,32 @@ componentWillReceiveProps(nextProps) {
 }
 
 updateCoinState(event) {
+  debugger;
   const field = event.target.name;
   let coin = Object.assign({},this.state.coin);
   coin[field] = event.target.value;
   return this.setState({coin: coin});
 }
-
+/*
 coinFormIsValid() {
+    debugger;
   let formIsValid = true;
   let errors = {};
-
-  if (this.state.coin.title.length < 5) {
-    errors.title = 'Title must be at least 5 characters.';
+  if (this.state.coin.title.length < 1) {
+    errors.title = 'Title must be at least 1 characters.';
     formIsValid = false;
   }
 
   this.setState({errors: errors});
   return formIsValid;
 }
-
+*/
 saveCoin(event) {
   event.preventDefault();
 
-  if (!this.coinFormIsValid()) {
-    return;
-  }
+//  if (!this.coinFormIsValid()) {
+//    return;
+//  }
 
   this.setState({saving: true});
 
@@ -96,12 +98,14 @@ ManageCoinsPage.contextTypes = {
 };
 
 function getCoinById(coins, id) {
+  debugger;
   const coin = coins.filter(coin => coin.id == id);
   if (coin) return coin[0]; //since filter returns an array, have to grab the first.
   return null;
 }
 
 function mapStateToProps(state, ownProps) {
+  debugger;
   const coinId = ownProps.params.id; // from the path `/course/:id`
 
   let coin = {id: '', watchHref: '', title: '', year: '', nominal: '', description: '', imgA: '', imgB: ''};
