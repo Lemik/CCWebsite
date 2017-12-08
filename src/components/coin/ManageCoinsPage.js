@@ -58,7 +58,7 @@ saveCoin(event) {
 //  }
 
   this.setState({saving: true});
-
+debugger;
   this.props.actions.saveCoin(this.state.coin)
     .then(() => this.redirect())
     .catch(error => {

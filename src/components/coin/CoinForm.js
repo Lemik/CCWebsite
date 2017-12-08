@@ -32,7 +32,6 @@ const CoinForm = ({coin, allNominals, onSave, onChange, saving, errors}) => {
           value={coin.mint}
           onChange={onChange}
           error={errors.mint}/>
-
       <TextInput
         name="description"
         label="Description"
