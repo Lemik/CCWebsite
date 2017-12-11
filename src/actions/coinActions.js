@@ -6,12 +6,12 @@ export function loadCoinsSuccess(coin){
   return {type: types.LOAD_COIN_SUCCESS, coin};
 }
 
-export function createCoinSuccess(course) {
-  return {type: types.CREATE_COIN_SUCCESS, course};
+export function createCoinSuccess(coin) {
+  return {type: types.CREATE_COIN_SUCCESS, coin};
 }
 
-export function updateCoinSuccess(course) {
-  return {type: types.UPDATE_COIN_SUCCESS, course};
+export function updateCoinSuccess(coin) {
+  return {type: types.UPDATE_COIN_SUCCESS, coin};
 }
 
 export function loadAllCoins(){

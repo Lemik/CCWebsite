@@ -46,7 +46,7 @@ const mock_coins = [
 const generateId = (coin) => {
 //  return replaceAll(coin.title, ' ', '-');
 //return coin.year+coin.mint;
-return NumberOfCoinsInCollection++;
+return `${++NumberOfCoinsInCollection}`;
 };
 
 
