@@ -4,19 +4,13 @@ import delay from './delay';
 // It uses setTimeout to simulate the delay of an AJAX call.
 // All calls return promises.
 const nominal = [
-  {
-    id: '1',
-    value:"1"
-  },
-  {
-    id: '2',
-    value:"2"
-  },
-  {
-    id: '5',
-    value:"5"
-  }
-
+  { id: '0.01' ,  title:"1 cent"  },
+  { id: '0.02' ,  title:"5 cents" },
+  { id: '0.10',  title:"10 cents"},
+  { id: '0.25' , title:"25 cents"},
+  { id: '0.50' , title:"50 cents"},
+  { id: '1' , title:"1 Dolar"},
+  { id: '2' , title:"2 Dolars"}
 ];
 
 //This would be performed on the server in a real app. Just stubbing in.
@@ -27,6 +21,14 @@ const generateId = (nominal) => {
 class NominalApi {
   static getAllNominals() {
     return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(Object.assign([], nominal));
+      }, delay);
+    });
+  }
+
+  static getNominalById(id){
+    return new Promise((resolve,reject)=>{
       setTimeout(() => {
         resolve(Object.assign([], nominal));
       }, delay);

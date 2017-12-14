@@ -3,7 +3,7 @@ export function nominalFormattedForDropdown(nominal) {
     return {
       value: nominal.id,
       //text: nominal.firstName + ' ' + nominal.lastName
-      text: nominal.value
+      text: nominal.title
     };
   });
 }

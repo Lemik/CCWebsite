@@ -6,7 +6,7 @@ import CoinForm from './CoinForm';
 import {nominalFormattedForDropdown} from '../../selectors/selectors';
 import toastr from 'toastr';
 
-export class ManageCoinsPage extends React.Component {
+export class ManageMintPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -93,14 +93,14 @@ render(){
         );
        }
 }
-ManageCoinsPage.propTypes = {
+ManageMintPage.propTypes = {
    coin: PropTypes.object.isRequired,
    nominal: PropTypes.array.isRequired,
    actions: PropTypes.object.isRequired
 };
 
 //Pull in the React Router context so router is available on this.context.router.
-ManageCoinsPage.contextTypes = {
+ManageMintPage.contextTypes = {
   router: PropTypes.object
 };
 
@@ -131,4 +131,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageCoinsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageMintPage);
