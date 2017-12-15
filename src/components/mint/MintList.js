@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import MintListRow from './MintListRow';
 
 const MintList = ({mint}) => {
   return (
@@ -13,20 +14,15 @@ const MintList = ({mint}) => {
       </tr>
       </thead>
       <tbody>
-      {coin.map(mint =>
-        <tr>
-          <td><a href={mint.id} target="_blank">Watch</a></td>
-          <td><Link to={'/mint/' + mint.id}>{mint.value}</Link></td>
-          <td>{mint.description}</td>
-          <td>{mint.country}</td>
-        </tr>
+      {mint.map(mint =>
+        <MintListRow key={mint.id} coin={mint}/>
       )}
       </tbody>
     </table>
   );
 };
 
-mintList.propTypes = {
+MintList.propTypes = {
   mint: PropTypes.array.isRequired
 };
 

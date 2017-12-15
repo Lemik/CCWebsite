@@ -7,7 +7,7 @@ import CoinListPage from './components/coin/CoinPage';
 import ManageCoinPage from './components/coin/ManageCoinsPage';
 
 import MintListPage from './components/mint/MintList';
-import ManageMintPage from './components/mint/ManageMint';
+import ManageMintPage from './components/mint/ManageMintPage';
 
 
 export default (

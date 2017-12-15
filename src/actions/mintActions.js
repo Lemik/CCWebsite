@@ -1,16 +1,16 @@
-import nominalApi from '../api/mockNominalApi';
+import mintApi from '../api/mockMintApi';
 import * as types from './actionTypes';
 import {beginAjaxCall} from './ajaxStatusActions';
 
-export function loadMintSuccess(nominal) {
-  return {type: types.LOAD_MINT_SUCCESS, nominal};
+export function loadMintSuccess(mint) {
+  return {type: types.LOAD_MINT_SUCCESS, mint};
 }
 
-export function loadNominals() {
+export function loadMint() {
   return dispatch => {
     dispatch(beginAjaxCall());
-    return nominalApi.getAllNominals().then(nominal => {
-      dispatch(loadNominalsSuccess(nominal));
+    return mintApi.getAllMints().then(mint => {
+      dispatch(loadMintSuccess(mintApi));
     }).catch(error => {
       throw(error);
     });

@@ -1,9 +1,8 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as coinActions from '../../actions/coinActions';
-import CoinForm from './CoinForm';
-import {nominalFormattedForDropdown} from '../../selectors/selectors';
+import * as mintActions from '../../actions/mintActions';
+import MintForm from './MintForm';
 import toastr from 'toastr';
 
 export class ManageMintPage extends React.Component {
@@ -11,34 +10,33 @@ export class ManageMintPage extends React.Component {
     super(props, context);
 
     this.state = {
-        coin: Object.assign({}, props.coin),
-        nominal: Object.assign({}, props.nominal),
+        mint: Object.assign({}, props.mint),
         errors: {},
 
         saving: false,
         deleting:false
 };
-    this.updateCoinState = this.updateCoinState.bind(this);
-    this.saveCoin= this.saveCoin.bind(this);
-    this.deleteCoin = this.deleteCoin.bind(this);
+    this.updateMintState = this.updateMintState.bind(this);
+    this.saveMint= this.saveMint.bind(this);
+    //this.deleteCoin = this.deleteCoin.bind(this);
 
 }
 
 componentWillReceiveProps(nextProps) {
-   if (this.props.coin.id != nextProps.coin.id) {
+   if (this.props.mint.id != nextProps.mint.id) {
     // Necessary to populate form when existing course is loaded directly.
-    this.setState({coin: Object.assign({}, nextProps.coin)});
+    this.setState({mint: Object.assign({}, nextProps.mint)});
   }
 }
 
-updateCoinState(event) {
+updateMintState(event) {
   const field = event.target.name;
-  let coin = Object.assign({},this.state.coin);
-  coin[field] = event.target.value;
-  return this.setState({coin: coin});
+  let mint = Object.assign({},this.state.mint);
+  mint[field] = event.target.value;
+  return this.setState({mint: mint});
 }
 
-coinFormIsValid() {
+/*coinFormIsValid() {
   let formIsValid = true;
   let errors = {};
   if (this.state.coin.title.length < 5) {
@@ -48,25 +46,25 @@ coinFormIsValid() {
 
   this.setState({errors: errors});
   return formIsValid;
-}
-saveCoin(event) {
+}*/
+saveMint(event) {
   event.preventDefault();
 
-  if (!this.coinFormIsValid()) {return;}
+//  if (!this.coinFormIsValid()) {return;}
 
   this.setState({saving: true});
-  this.props.actions.saveCoin(this.state.coin)
+  this.props.actions.saveMint(this.state.mint)
     .then(() => this.redirect())
     .catch(error => {
       toastr.error(error);
       this.setState({saving: false});
     });
 }
-deleteCoin(event) {
+deleteMint(event) {
   event.preventDefault();
 
   this.setState({deleting: true});
-  this.props.actions.saveCoin(this.state.coin)
+  this.props.actions.saveMint(this.state.Mint)
     .then(() => this.redirect())
     .catch(error => {
       toastr.error(error);
@@ -76,26 +74,25 @@ deleteCoin(event) {
 
 redirect() {
   this.setState({saving: false});
-  toastr.success('Coin saved');
+  toastr.success('Mint saved');
   this.context.router.push('/list');
 }
 
 render(){
   return(
-        <CoinForm
-          allNominals={this.props.nominal}
-          onChange={this.updateCoinState}
-          onSave={this.saveCoin}
-          coin={this.state.coin}
-          errors={this.state.errors}
+        <MintForm
+          mint={this.state.mint}
+          onSave={this.saveMint}
+          onChange={this.updateMintState}
           saving={this.state.saving}
-          onDelete={this.deleteCoin}/>
+          errors={this.state.errors}
+//          onDelete={this.deleteCoin}
+        />
         );
        }
 }
 ManageMintPage.propTypes = {
-   coin: PropTypes.object.isRequired,
-   nominal: PropTypes.array.isRequired,
+   mint: PropTypes.object.isRequired,
    actions: PropTypes.object.isRequired
 };
 
@@ -104,30 +101,27 @@ ManageMintPage.contextTypes = {
   router: PropTypes.object
 };
 
-function getCoinById(coins, id) {
-  const coin = coins.filter(coin => coin.id == id);
-  if (coin) return coin[0]; //since filter returns an array, have to grab the first.
+function getMintById(mint, id) {
+  const m = mint.filter(m => m.id == id);
+  if (m) return m[0]; //since filter returns an array, have to grab the first.
   return null;
 }
 
 function mapStateToProps(state, ownProps) {
-  const coinId = ownProps.params.id; // from the path `/course/:id`
-  let coin = {id: '', watchHref: '', title: '', year: '', nominal: '', description: '', imgA: '', imgB: ''};
-  //const nominalFormatForDropDown = state.nominal.map(nominal =>{ return{ value: nominal.id,
-  //
-  if (coinId && state.coin.length > 0) {
-      coin = getCoinById(state.coin, coinId);
-      //text: nominal.value
+  const mintId = ownProps.params.id; // from the path `/course/:id`
+  let mint = {id: '', value: '', description: '', country: ''};
+
+  if (mintId && state.mint.length > 0) {
+      mint = getMintById(state.mint, mintId);
     }
 return {
-  coin: coin,
-  nominal: nominalFormattedForDropdown(state.nominal)
-};
+  mint: mint
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(coinActions, dispatch)
+    actions: bindActionCreators(mintActions, dispatch)
   };
 }
 
