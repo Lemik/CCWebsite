@@ -37,3 +37,17 @@ export function saveCoin(coin) {
     });
   };
 }
+
+
+export function deleteCoin(coin) {
+  return function (dispatch, getState) {
+    dispatch(beginAjaxCall());
+    return mockCoinApi.deleteCoin(coin).then(coin => {
+      coin.id ? dispatch(updateCoinSuccess(coin)) :
+        dispatch(createCoinSuccess(coin));
+    }).catch(error => {
+      dispatch(ajaxCallError(error));
+      throw(error);
+    });
+  };
+}

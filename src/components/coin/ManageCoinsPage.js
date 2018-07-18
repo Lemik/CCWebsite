@@ -14,34 +14,34 @@ export class ManageCoinsPage extends React.Component {
         coin: Object.assign({}, props.coin),
         nominal: Object.assign({}, props.nominal),
         errors: {},
-        saving: false
+
+        saving: false,
+        deleting:false
 };
     this.updateCoinState = this.updateCoinState.bind(this);
     this.saveCoin= this.saveCoin.bind(this);
+    this.deleteCoin = this.deleteCoin.bind(this);
 
 }
 
 componentWillReceiveProps(nextProps) {
-  debugger;
-  if (this.props.coin.id != nextProps.coin.id) {
+   if (this.props.coin.id != nextProps.coin.id) {
     // Necessary to populate form when existing course is loaded directly.
     this.setState({coin: Object.assign({}, nextProps.coin)});
   }
 }
 
 updateCoinState(event) {
-  debugger;
   const field = event.target.name;
   let coin = Object.assign({},this.state.coin);
   coin[field] = event.target.value;
   return this.setState({coin: coin});
 }
-/*
+
 coinFormIsValid() {
-    debugger;
   let formIsValid = true;
   let errors = {};
-  if (this.state.coin.title.length < 1) {
+  if (this.state.coin.title.length < 5) {
     errors.title = 'Title must be at least 1 characters.';
     formIsValid = false;
   }
@@ -49,21 +49,28 @@ coinFormIsValid() {
   this.setState({errors: errors});
   return formIsValid;
 }
-*/
 saveCoin(event) {
   event.preventDefault();
 
-//  if (!this.coinFormIsValid()) {
-//    return;
-//  }
+  if (!this.coinFormIsValid()) {return;}
 
   this.setState({saving: true});
-debugger;
   this.props.actions.saveCoin(this.state.coin)
     .then(() => this.redirect())
     .catch(error => {
       toastr.error(error);
       this.setState({saving: false});
+    });
+}
+deleteCoin(event) {
+  event.preventDefault();
+
+  this.setState({deleting: true});
+  this.props.actions.saveCoin(this.state.coin)
+    .then(() => this.redirect())
+    .catch(error => {
+      toastr.error(error);
+      this.setState({deleting: false});
     });
 }
 
@@ -82,7 +89,7 @@ render(){
           coin={this.state.coin}
           errors={this.state.errors}
           saving={this.state.saving}
-          />
+          onDelete={this.deleteCoin}/>
         );
        }
 }
@@ -98,18 +105,14 @@ ManageCoinsPage.contextTypes = {
 };
 
 function getCoinById(coins, id) {
-  debugger;
   const coin = coins.filter(coin => coin.id == id);
   if (coin) return coin[0]; //since filter returns an array, have to grab the first.
   return null;
 }
 
 function mapStateToProps(state, ownProps) {
-  debugger;
   const coinId = ownProps.params.id; // from the path `/course/:id`
-
   let coin = {id: '', watchHref: '', title: '', year: '', nominal: '', description: '', imgA: '', imgB: ''};
-
   //const nominalFormatForDropDown = state.nominal.map(nominal =>{ return{ value: nominal.id,
   //
   if (coinId && state.coin.length > 0) {

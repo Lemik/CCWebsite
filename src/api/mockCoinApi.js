@@ -60,7 +60,6 @@ class CoinApi {
   }
 
   static saveCoin(coin) {
-    debugger;
     coin = Object.assign({}, coin); // to avoid manipulating object passed in.
     return new Promise((resolve, reject) => {
 //      setTimeout(() => {

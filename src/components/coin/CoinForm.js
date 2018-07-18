@@ -2,7 +2,7 @@ import React from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
-const CoinForm = ({coin, allNominals, onSave, onChange, saving, errors}) => {
+const CoinForm = ({coin, allNominals, onSave, onChange, saving, errors, onDelete}) => {
   return (
     <form>
       <h1>Manage Coins</h1>
@@ -46,6 +46,13 @@ const CoinForm = ({coin, allNominals, onSave, onChange, saving, errors}) => {
         value={saving ? 'Saving...' : 'Save'}
         className="btn btn-primary"
         onClick={onSave}/>
+
+        <input
+          type="Delete"
+          disabled={saving}
+          value={saving ? 'Deleting...' : 'Deleted'}
+          className="btn btn-primary"
+          onClick={onDelete}/>
     </form>
   );
 };
@@ -56,7 +63,8 @@ CoinForm.propTypes = {
   onSave: React.PropTypes.func.isRequired,
   onChange: React.PropTypes.func.isRequired,
   saving: React.PropTypes.bool,
-  errors: React.PropTypes.object
+  errors: React.PropTypes.object,
+  onDelete: React.PropTypes.func.isRequired
 };
 
 export default CoinForm;
